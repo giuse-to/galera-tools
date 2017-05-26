@@ -1,0 +1,25 @@
+## log severity 
+INFO='INFO'
+WARN='WARNING'
+ERR='ERROR'
+###
+function init_log {
+
+LOGFILE=$1
+
+  if [ -f ${LOGFILE} ];then 
+  :> ${LOGFILE}
+  fi
+}
+
+function write_to_log {
+  LOGFILE=$1
+  MSG=$2
+  TYPE=$3
+  if [  -s ${TYPE} ]; then TYPE='UNDEF';fi
+
+  DATE=`date "+%F %T"`
+
+  echo  "${DATE} - ${TYPE} - ${MSG}" >> ${LOGFILE}
+}
+
